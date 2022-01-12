@@ -1,5 +1,4 @@
 #include "GAIndividual.h"
-#include <set>
 
 GAIndividual::GAIndividual(){
 	genotype = new vector<LogicVariable*>();
@@ -21,7 +20,6 @@ GAIndividual* GAIndividual::mutation(float probability){
 
 GAIndividual* GAIndividual::crossOver(GAIndividual* other){
 	GAIndividual* child = new GAIndividual();
-	set<int> set;
 	for (int i = 0; i < genotype->size(); i++) {
 		if (0 + (rand() % (1 - 0 + 1)) == 1) {
 			child->genotype->push_back(new LogicVariable(genotype->at(i)->id, genotype->at(i)->sign));
@@ -36,8 +34,12 @@ GAIndividual* GAIndividual::crossOver(GAIndividual* other){
 float GAIndividual::fitness(vector<Clause*>* clauses){
 	int numberFitedClauses = 0;
 	for (int i = 0; i < clauses->size(); i++) {
-		bool 
+		bool first = (clauses->at(i)->firstSign == getLogicVariableById(clauses->at(i)->firstId)->sign);
+		bool second = (clauses->at(i)->secondSign == getLogicVariableById(clauses->at(i)->secondId)->sign);
+		bool third = (clauses->at(i)->thirdSign == getLogicVariableById(clauses->at(i)->thirdId)->sign);
+		if (first || second || third) numberFitedClauses++;
 	}
+	return ((float)numberFitedClauses) / ((float)clauses->size());
 }
 
 LogicVariable* GAIndividual::getLogicVariableById(int id){
