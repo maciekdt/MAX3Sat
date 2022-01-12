@@ -144,6 +144,7 @@
     <ClInclude Include="GAOptymizer.h" />
     <ClInclude Include="LogicVariable.h" />
     <ClInclude Include="Max3SatProblem.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GAIndividual.cpp" />
