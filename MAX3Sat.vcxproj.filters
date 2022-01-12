@@ -44,6 +44,9 @@
     <ClCompile Include="GAIndividual.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\..\Desktop\Techniki efektywnego programowania\max3sat\50\m3s_50_0.txt">

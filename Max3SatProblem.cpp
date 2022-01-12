@@ -75,8 +75,3 @@ int Max3SatProblem::compute(vector<bool> solution) { // zle
 	return counter;
 }
 
-int main() {
-	Max3SatProblem test;
-
-	test.load("m3s_50_0.txt");
-}
