@@ -6,6 +6,6 @@ public:
 	LogicVariable(int id, bool sign) {
 		this->id = id;
 		this->sign = sign;
-	}
+	};
 };
 
