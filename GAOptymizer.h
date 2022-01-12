@@ -8,11 +8,11 @@ private:
 	int populationSize;
 	float crossoverProbabilty;
 	float mutationProbability;
-	vector<GAIndividual> solutions;
+	vector<GAIndividual*> solutions;
 
 public:
 	void setParameters(int populationSize, float crossoverProbabilty, float mutationProbability);
 	void initialize(vector<int> variables);
-
+	GAIndividual* runIteration();
 };
 
