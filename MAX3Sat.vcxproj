@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Clause.h" />
     <ClInclude Include="GAIndividual.h" />
     <ClInclude Include="GAOptymizer.h" />
     <ClInclude Include="Max3SatProblem.h" />

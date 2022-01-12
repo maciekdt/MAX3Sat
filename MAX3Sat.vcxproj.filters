@@ -24,6 +24,9 @@
     <ClInclude Include="GAIndividual.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Clause.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Max3SatProblem.cpp">
