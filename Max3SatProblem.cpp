@@ -22,7 +22,8 @@ void Max3SatProblem::load(std::string path) {
 	string number = "";
 	vector<bool> flags;
 	vector<int> ids;
-	vector<int> *variables = new vector<int>();
+	variables = new vector<int>();
+	clauses = new vector<Clause*>();
 
 	if (file.is_open()) {
 		string line;
@@ -45,9 +46,8 @@ void Max3SatProblem::load(std::string path) {
 					number = "";
 				}
 			}
-			clauses.push_back(new Clause(ids[0], flags[0],
-											ids[1], flags[1],
-											ids[2], flags[2]));
+			clauses.push_back(new Clause(ids[0], ids[1], ids[2], 
+											flags[0], flags[1], flags[2]));
 		}
 		file.close();
 	}

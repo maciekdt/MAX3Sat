@@ -12,7 +12,7 @@ public:
 	float compute(std::vector<bool> solution);
 
 private:
-	std::vector<Clause*> clauses;
-	std::vector<int> variables;
+	std::vector<Clause*> *clauses;
+	std::vector<int> *variables;
 };
 
