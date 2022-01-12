@@ -1,6 +1,7 @@
 #pragma once
-class GAIndividual
-{
-	//dddfff
+class GAIndividual{
+public:
+
+
 };
 
