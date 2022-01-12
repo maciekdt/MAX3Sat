@@ -8,6 +8,7 @@ class Max3SatProblem
 public: 
 	Max3SatProblem();
 	void load(std::string path);
+	bool contains(vector<int> *variables, int intToCheck);
 	float compute(std::vector<bool> solution);
 
 private:

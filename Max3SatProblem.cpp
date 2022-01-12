@@ -1,42 +1,62 @@
 #include "Max3SatProblem.h"
+#include <fstream>
+#include <iostream>
+using namespace std;
 
-void CMax3SatProblem::load(std::string path) {
-	std::ifstream file;
-	file.open(filename);
-	if (!file.good())
-		return std::vector<Clause*>();
+void Max3SatProblem::load(std::string path) {
+	ifstream file;
+	file.open(path);
+	
+	if (!file)
+		return;
 
 	std::vector<Clause*> clauses;
 
-	// potrzebne do splitowania
 	std::string line;
-	const char separator = ' ';
-	std::vector<std::string> outputArray;
+	char separator = ' ';
 	std::string val;
 
-	// odczytujemy dane
-	int i = 0;
-	while (i < amountOfClauzules) {
-		// splitujemy
-		std::getline(file, line);
-		std::stringstream streamData(line);
+	bool sign = true;
+	int id = 0;
 
-		while (std::getline(streamData, val, separator)) {
-			outputArray.push_back(val);
+	string number = "";
+	vector<bool> flags;
+	vector<int> ids;
+	vector<int> *variables = new vector<int>();
+
+	if (file.is_open()) {
+		string line;
+
+
+		while (getline(file, line)) {
+			for (int i = 2; i < line.size()-2; i++) {
+				if (line[i] == '-') {
+					sign = false;
+				}
+				else if (line[i] != ' ') {
+					number += (line[i]);
+				}
+				else if (line[i] == ' ') {
+					id = stoi(number);
+					if (!(contains(variables, id)))
+						variables->push_back(id);
+					ids.push_back(id);
+					flags.push_back(sign);
+					number = "";
+				}
+			}
+			clauses.push_back(new Clause(ids[0], flags[0],
+											ids[1], flags[1],
+											ids[2], flags[2]));
 		}
-
-		// nowa klauzla wrzucana do wektora
-		Clause* read = new Clause(
-			stoi(outputArray[1]),
-			stoi(outputArray[3]),
-			stoi(outputArray[5])
-		);
-
-		clauses.push_back(read);
-		outputArray.clear();
-		i++;
+		file.close();
 	}
+}
 
-	file.close();
-	return clauses;
+bool Max3SatProblem::contains(vector<int> *variables, int intToCheck) {
+	for (int i = 0; i < variables->size(); i++) {
+		if (variables->at(i) == intToCheck)
+			return true;
+	}
+	return false;
 }
