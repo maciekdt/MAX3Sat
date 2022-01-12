@@ -150,6 +150,9 @@
     <ClCompile Include="GAOptymizer.cpp" />
     <ClCompile Include="Max3SatProblem.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\Desktop\Techniki efektywnego programowania\max3sat\50\m3s_50_0.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
