@@ -1,6 +1,8 @@
 #pragma once
 class GAIndividual
 {
-	//dddfff
+	//Maciek test push
+	//Maciek test pull
+	
 };
 
