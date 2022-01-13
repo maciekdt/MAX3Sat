@@ -14,6 +14,14 @@ public:
 		int third,
 		bool firstNegativ,
 		bool secondNegativ,
-		bool thirdNegativ);
+		bool thirdNegativ) {
+		firstId = first;
+		secondId = second;
+		thirdId = third;
+		firstSign = firstNegativ;
+		secondSign = secondNegativ;
+		thirdSign = thirdNegativ;
+
+	}
 };
 

@@ -3,16 +3,12 @@
 #include <iostream>
 using namespace std;
 
-void Max3SatProblem::load(std::string path) {
-	ifstream file;
-	file.open(path);
+void Max3SatProblem::load(string path) {
+	ifstream file(path);
 	
-	if (!file)
-		return;
-
-	std::string line;
+	string line;
 	char separator = ' ';
-	std::string val;
+	string val;
 
 	bool sign = true;
 	int id = 0;
@@ -44,8 +40,8 @@ void Max3SatProblem::load(std::string path) {
 					number = "";
 				}
 			}
-			clauses->push_back(new Clause(ids[0], ids[1], ids[2], 
-											flags[0], flags[1], flags[2]));
+			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2), 
+											flags.at(0), flags.at(1), flags.at(2)));
 		}
 		file.close();
 	}
