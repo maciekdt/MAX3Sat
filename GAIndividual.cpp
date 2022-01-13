@@ -18,6 +18,8 @@ GAIndividual* GAIndividual::mutation(float probability){
 	return mutatedInd;
 }
 
+
+//Dopracowac!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 GAIndividual* GAIndividual::crossOver(GAIndividual* other){
 	GAIndividual* child = new GAIndividual();
 	for (int i = 0; i < genotype->size(); i++) {
@@ -31,16 +33,15 @@ GAIndividual* GAIndividual::crossOver(GAIndividual* other){
 	return child;
 }
 
-float GAIndividual::fitness(vector<Clause*>* clauses){
-	int numberFitedClauses = 0;
-	for (int i = 0; i < clauses->size(); i++) {
-		bool first = (clauses->at(i)->firstSign == getLogicVariableById(clauses->at(i)->firstId)->sign);
-		bool second = (clauses->at(i)->secondSign == getLogicVariableById(clauses->at(i)->secondId)->sign);
-		bool third = (clauses->at(i)->thirdSign == getLogicVariableById(clauses->at(i)->thirdId)->sign);
-		if (first || second || third) numberFitedClauses++;
-	}
-	return ((float)numberFitedClauses) / ((float)clauses->size());
+float GAIndividual::fitness(Max3SatProblem* enviroment){
+	return ((float)enviroment->compute(this) / (float)enviroment->getNumberOfClauses());
 }
+
+void GAIndividual::addToGenotypeRand(int id){
+	bool random = 0 + (rand() % (1 - 0 + 1)) == 1;
+	genotype->push_back(new LogicVariable(id, random));
+}
+
 
 LogicVariable* GAIndividual::getLogicVariableById(int id){
 	for (int i = 0; i < genotype->size(); i++) {

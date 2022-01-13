@@ -2,6 +2,7 @@
 #include <vector>
 #include "Clause.h"
 #include <string>
+#include "GAIndividual.h"
 
 class Max3SatProblem
 {
@@ -9,7 +10,8 @@ public:
 	//Max3SatProblem();
 	void load(std::string path);
 	bool contains(int intToCheck);
-	int compute(std::vector<bool> solution);
+	int compute(GAIndividual* solution);
+	int getNumberOfClauses();
 
 private:
 	std::vector<Clause*> *clauses;

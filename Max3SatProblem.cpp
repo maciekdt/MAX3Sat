@@ -1,6 +1,7 @@
 #include "Max3SatProblem.h"
 #include <fstream>
 #include <iostream>
+
 using namespace std;
 
 void Max3SatProblem::load(string path) {
@@ -59,19 +60,18 @@ bool Max3SatProblem::contains(int intToCheck) {
 	return false;
 }
 
-int Max3SatProblem::compute(vector<bool> solution) { // zle
-	int counter = 0;
-	bool f_Flag;
-	bool s_Flag;
-	bool t_Flag;
-
+int Max3SatProblem::compute(GAIndividual* solution) {
+	int numberFitedClauses = 0;
 	for (int i = 0; i < clauses->size(); i++) {
-		f_Flag = (solution.at(clauses->at(i)->firstId) && clauses->at(i)->firstSign);
-		s_Flag = (solution.at(clauses->at(i)->secondId) && clauses->at(i)->secondSign);
-		t_Flag = (solution.at(clauses->at(i)->thirdId) && clauses->at(i)->thirdSign);
-		if (f_Flag || s_Flag || t_Flag)
-			counter++;
+		bool first = (clauses->at(i)->firstSign == solution->getLogicVariableById(clauses->at(i)->firstId)->sign);
+		bool second = (clauses->at(i)->secondSign == solution->getLogicVariableById(clauses->at(i)->secondId)->sign);
+		bool third = (clauses->at(i)->thirdSign == solution->getLogicVariableById(clauses->at(i)->thirdId)->sign);
+		if (first || second || third) numberFitedClauses++;
 	}
-	return counter;
+	return numberFitedClauses;
+}
+
+int Max3SatProblem::getNumberOfClauses(){
+	return clauses->size();
 }
 
