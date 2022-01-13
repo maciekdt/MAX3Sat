@@ -5,7 +5,6 @@ using namespace std;
 
 void Max3SatProblem::load(string path) {
 	ifstream file(path);
-	
 	string line;
 	char separator = ' ';
 	string val;
@@ -19,9 +18,13 @@ void Max3SatProblem::load(string path) {
 	variables = new vector<int>();
 	clauses = new vector<Clause*>();
 
-	if (file.is_open()) {
-		string line;
+	if (!file.good()) {
+		cout << "file error";
+		return;
+	}
 
+	if (file) {
+		string line;
 
 		while (getline(file, line)) {
 			for (int i = 2; i < line.size()-2; i++) {
@@ -31,13 +34,14 @@ void Max3SatProblem::load(string path) {
 				else if (line[i] != ' ') {
 					number += (line[i]);
 				}
-				else if (line[i] == '  ') {
+				else if (line[i] == ' ' && line[i+1] == ' ') {
 					id = stoi(number);
 					if (!(contains(id)))
 						variables->push_back(id);
 					ids.push_back(id);
 					flags.push_back(sign);
 					number = "";
+					i++;
 				}
 			}
 			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2), 
