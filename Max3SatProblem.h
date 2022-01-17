@@ -2,7 +2,7 @@
 #include <vector>
 #include "Clause.h"
 #include <string>
-#include "GAIndividual.h"
+
 
 class Max3SatProblem
 {
