@@ -36,7 +36,7 @@ void Max3SatProblem::load(string path) {
 
 
 			char* pch;
-			pch = strtok(&line.at(0), " )(");
+			pch = strtok(str, " )(");
 
 			while (pch != NULL) {
 				if (pch[0] == '-') {
