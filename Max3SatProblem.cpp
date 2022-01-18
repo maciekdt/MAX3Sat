@@ -15,8 +15,6 @@ void Max3SatProblem::load(string path) {
 	int id = 0;
 
 	string number = "";
-	vector<bool> flags;
-	vector<int> ids;
 	variables = new vector<int>();
 	clauses = new vector<Clause*>();
 
@@ -28,7 +26,10 @@ void Max3SatProblem::load(string path) {
 	if (file) {
 		string line;
 		while (getline(file, line)) {
+			vector<bool> flags;
+			vector<int> ids;
 			char* str = new char[line.size()+1];
+			
 			strcpy(str, line.c_str());
 			for (int i = 0; i < line.size(); i++) {
 				str[i] = line.at(i);
