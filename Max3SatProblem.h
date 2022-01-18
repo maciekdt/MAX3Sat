@@ -1,8 +1,8 @@
 #pragma once
-#include "GAIndividual.h"
+class GAIndividual;
 #include "Clause.h"
 #include <string>
-#include "GAIndividual.h"
+#include<vector>
 
 class Max3SatProblem
 {
