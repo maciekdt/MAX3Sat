@@ -9,10 +9,10 @@ GAIndividual* GAIndividual::mutation(float probability){
 	for (int i = 0; i < genotype->size(); i++) {
 		float random = ((float)rand()) / (float)RAND_MAX;
 		if (random < probability) {
-			mutatedInd->genotype->push_back(new LogicVariable(genotype->at(i)->id, !(genotype->at(i)->sign)));
+			mutatedInd->genotype->push_back(new LogicVariable(genotype->at(i)->getId(), !(genotype->at(i)->sign)));
 		}
 		else {
-			mutatedInd->genotype->push_back(new LogicVariable(genotype->at(i)->id, genotype->at(i)->sign));
+			mutatedInd->genotype->push_back(new LogicVariable(genotype->at(i)->getId(), genotype->at(i)->get));
 		}
 	}
 	return mutatedInd;

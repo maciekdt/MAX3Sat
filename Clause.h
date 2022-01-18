@@ -2,13 +2,6 @@
 class Clause
 {
 public:
-	int firstId;
-	int secondId;
-	int thirdId;
-	bool firstSign;
-	bool secondSign;
-	bool thirdSign;
-
 	Clause(int first,
 		int second,
 		int third,
@@ -21,7 +14,22 @@ public:
 		firstSign = firstNegativ;
 		secondSign = secondNegativ;
 		thirdSign = thirdNegativ;
+	};
 
-	}
+	int getFirstId() { return firstId; };
+	int getSecondId() { return secondId; };
+	int getThirdId() { return thirdId; };
+
+	bool getFirstSign() { return firstSign; };
+	bool getSecondSign() { return secondId; };
+	bool getThridSign() { return thirdId; };
+
+private:
+	int firstId;
+	int secondId;
+	int thirdId;
+	bool firstSign;
+	bool secondSign;
+	bool thirdSign;
 };
 

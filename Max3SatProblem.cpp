@@ -28,6 +28,28 @@ void Max3SatProblem::load(string path) {
 		string line;
 
 		while (getline(file, line)) {
+			//---------------------------------------------
+			char str[] = "- This, a sample string."; 
+			char* pch;
+			pch = strtok(str, " )(");
+
+			while (pch != NULL) {
+				if (pch[0] == '-') {
+					flags.push_back(false);
+				}
+				else {
+					flags.push_back(true);
+					variables->push_back(stoi(pch));
+				}
+				pch = strtok(NULL, " )(");
+			}
+
+			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2),
+				flags.at(0), flags.at(1), flags.at(2)));
+		}
+
+
+			/*-------------------------------------------- -
 			for (int i = 2; i < line.size()-2; i++) {
 				if (line[i] == '-') {
 					sign = false;
@@ -47,7 +69,7 @@ void Max3SatProblem::load(string path) {
 			}
 			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2), 
 											flags.at(0), flags.at(1), flags.at(2)));
-		}
+		}*/
 		file.close();
 	}
 }
@@ -67,9 +89,9 @@ int Max3SatProblem::compute(vector<LogicVariable*>* solution) {
 	bool third;
 
 	for (int i = 0; i < clauses->size(); i++) {
-		first = (clauses->at(i)->firstSign == getVariableById(clauses->at(i)->firstId, solution)->sign);
-		second = (clauses->at(i)->secondSign == getVariableById(clauses->at(i)->secondId, solution)->sign);
-		third = (clauses->at(i)->thirdSign == getVariableById(clauses->at(i)->thirdId, solution)->sign);
+		first = (clauses->at(i)->getFirstSign() == getVariableById(clauses->at(i)->getFirstId(), solution)->getSign());
+		second = (clauses->at(i)->getSecondSign() == getVariableById(clauses->at(i)->getSecondId(), solution)->getSign());
+		third = (clauses->at(i)->getThridSign() == getVariableById(clauses->at(i)->getThirdId(), solution)->getSign());
 		if (first || second || third) numberFitedClauses++;
 	}
 	return numberFitedClauses;
@@ -82,9 +104,10 @@ int Max3SatProblem::getNumberOfClauses(){
 LogicVariable* Max3SatProblem::getVariableById(int id, vector<LogicVariable*>* solution)
 {
 	for (int i = 0; i < solution->size(); i++) {
-		if (solution->at(i)->id == id)
+		if (solution->at(i)->getId() == id)
 			return solution->at(i);
 	}
+
 	return nullptr;
 }
 

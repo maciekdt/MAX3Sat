@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class GAOptymizer{
+class GAOptymizer {
 private:
 	int populationSize;
 	float crossoverProbabilty;
