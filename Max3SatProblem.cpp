@@ -33,6 +33,7 @@ void Max3SatProblem::load(string path) {
 			for (int i = 0; i < line.size(); i++) {
 				str[i] = line.at(i);
 			}
+			str[line.length()] = '\0';
 
 
 			char* pch;
