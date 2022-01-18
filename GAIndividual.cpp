@@ -19,18 +19,24 @@ GAIndividual* GAIndividual::mutation(float probability){
 }
 
 
-//Dopracowac!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-GAIndividual* GAIndividual::crossOver(GAIndividual* other){
-	GAIndividual* child = new GAIndividual();
-	for (int i = 0; i < genotype->size(); i++) {
+
+vector<GAIndividual*>* GAIndividual::crossOver(GAIndividual* individual1, GAIndividual* individual2){
+	GAIndividual* child1 = new GAIndividual();
+	GAIndividual* child2 = new GAIndividual();
+	for (int i = 0; i < individual1->genotype->size(); i++) {
 		if (0 + (rand() % (1 - 0 + 1)) == 1) {
-			child->genotype->push_back(new LogicVariable(genotype->at(i)->id, genotype->at(i)->sign));
+			child1->genotype->push_back(new LogicVariable(individual1->genotype->at(i)->id, individual1->genotype->at(i)->sign));
+			child2->genotype->push_back(new LogicVariable(individual1->genotype->at(i)->id, individual1->genotype->at(i)->sign));
 		}
 		else {
-			child->genotype->push_back(new LogicVariable(other->genotype->at(i)->id, other->genotype->at(i)->sign));
+			child1->genotype->push_back(new LogicVariable(individual2->genotype->at(i)->id, individual2->genotype->at(i)->sign));
+			child2->genotype->push_back(new LogicVariable(individual2->genotype->at(i)->id, individual2->genotype->at(i)->sign));
 		}
 	}
-	return child;
+	vector<GAIndividual*>* result = new vector<GAIndividual*>();
+	result->push_back(child1);
+	result->push_back(child2);
+	return result;
 }
 
 float GAIndividual::fitness(Max3SatProblem* enviroment){
