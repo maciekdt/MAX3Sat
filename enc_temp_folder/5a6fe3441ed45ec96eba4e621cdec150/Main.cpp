@@ -15,10 +15,10 @@ int main() {
     GAOptymizer optymalizator;
     optymalizator.initialize(problem->getVariables());
 
-    //for (int i = 0; i < iterations; i++) {
-        //cout << i << " ";
-        //optymalizator.runIteration(problem);
-    //}
+    for (int i = 0; i < iterations; i++) {
+        cout << i << " ";
+        optymalizator.runIteration(problem);
+    }
 
     return 0;
 }

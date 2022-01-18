@@ -48,6 +48,8 @@ void Max3SatProblem::load(string path) {
 					flags.push_back(true);
 				}
 				ids.push_back(abs(stoi(pch)));
+				if (!(contains(abs(stoi(pch)))))
+					variables->push_back(abs(stoi(pch)));
 				pch = strtok(NULL, " )(");
 			}
 			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2),
@@ -106,6 +108,11 @@ int Max3SatProblem::compute(vector<LogicVariable*>* solution) {
 
 int Max3SatProblem::getNumberOfClauses(){
 	return clauses->size();
+}
+
+vector<int>* Max3SatProblem::getVariables()
+{
+	return variables;
 }
 
 LogicVariable* Max3SatProblem::getVariableById(int id, vector<LogicVariable*>* solution)

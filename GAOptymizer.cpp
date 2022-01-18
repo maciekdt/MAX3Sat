@@ -17,6 +17,7 @@ void GAOptymizer::setParameters(int populationSize, float crossoverProbabilty, f
 }
 
 void GAOptymizer::initialize(vector<int>* variables){
+	population = new vector<GAIndividual*>();
 	for (int i = 0; i < variables->size(); i++) {
 		GAIndividual* ind = new  GAIndividual();
 		ind->addToGenotypeRand(variables->at(i));

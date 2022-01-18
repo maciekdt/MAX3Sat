@@ -12,6 +12,7 @@ public:
 	bool contains(int intToCheck);
 	int compute(vector<LogicVariable*>* solution);
 	int getNumberOfClauses();
+	vector<int>* getVariables();
 
 private:
 	LogicVariable* getVariableById(int id, vector<LogicVariable*>* solution);
