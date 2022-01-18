@@ -30,8 +30,9 @@ void GAOptymizer::runIteration(Max3SatProblem* environment){
 	while (newPopulation->size() < population->size()) {
 		GAIndividual* parent1 = chooseParent(environment);
 		GAIndividual* parent2 = chooseParent(environment);
-		GAIndividual* child1 = parent1->crossOver(parent2);
-		GAIndividual* child2 = parent1->crossOver(parent2);
+		vector<GAIndividual*>* children = GAIndividual::crossOver(parent1,parent2);
+		GAIndividual* child1 = children->at(0);
+		GAIndividual* child2 = children->at(1);
 		child1 = child1->mutation(mutationProbability);
 		child2 = child2->mutation(mutationProbability);
 		newPopulation->push_back(child1);
