@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
 #include "LogicVariable.h"
-#include "Clause.h"
 #include "Max3SatProblem.h"
+#include "Clause.h"
 
 using namespace std;
 

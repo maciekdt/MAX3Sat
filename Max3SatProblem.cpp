@@ -62,10 +62,14 @@ bool Max3SatProblem::contains(int intToCheck) {
 
 int Max3SatProblem::compute(GAIndividual* solution) {
 	int numberFitedClauses = 0;
+	bool first;
+	bool second;
+	bool third;
+
 	for (int i = 0; i < clauses->size(); i++) {
-		bool first = (clauses->at(i)->firstSign == solution->getLogicVariableById(clauses->at(i)->firstId)->sign);
-		bool second = (clauses->at(i)->secondSign == solution->getLogicVariableById(clauses->at(i)->secondId)->sign);
-		bool third = (clauses->at(i)->thirdSign == solution->getLogicVariableById(clauses->at(i)->thirdId)->sign);
+		first = (clauses->at(i)->firstSign == solution->getLogicVariableById(clauses->at(i)->firstId)->sign);
+		second = (clauses->at(i)->secondSign == solution->getLogicVariableById(clauses->at(i)->secondId)->sign);
+		third = (clauses->at(i)->thirdSign == solution->getLogicVariableById(clauses->at(i)->thirdId)->sign);
 		if (first || second || third) numberFitedClauses++;
 	}
 	return numberFitedClauses;

@@ -1,13 +1,13 @@
 #pragma once
-#include <vector>
+#include "GAIndividual.h"
 #include "Clause.h"
 #include <string>
-#include "GAIndividual.h"
+#include <vector>
 
 class Max3SatProblem
 {
 public: 
-	//Max3SatProblem();
+	Max3SatProblem();
 	void load(std::string path);
 	bool contains(int intToCheck);
 	int compute(GAIndividual* solution);
