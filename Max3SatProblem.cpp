@@ -26,12 +26,15 @@ void Max3SatProblem::load(string path) {
 
 	if (file) {
 		string line;
-
 		while (getline(file, line)) {
-			//---------------------------------------------
-			char str[] = "- This, a sample string."; 
+			char* str = new char[line.length() + 1];
+			strcpy(str, line.c_str());
+			for (int i = 0; i < line.length(); i++) {
+				str[i] = line.at(i);
+			}
+
 			char* pch;
-			pch = strtok(str, " )(");
+			pch = strtok(&line.at(0), " )(");
 
 			while (pch != NULL) {
 				if (pch[0] == '-') {
@@ -39,11 +42,11 @@ void Max3SatProblem::load(string path) {
 				}
 				else {
 					flags.push_back(true);
-					variables->push_back(stoi(pch));
 				}
+				variables->push_back(abs(stoi(pch)));
+
 				pch = strtok(NULL, " )(");
 			}
-
 			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2),
 				flags.at(0), flags.at(1), flags.at(2)));
 		}
