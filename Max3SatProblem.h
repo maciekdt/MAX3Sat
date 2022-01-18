@@ -7,7 +7,7 @@ using namespace std;
 class Max3SatProblem
 {
 public: 
-	Max3SatProblem();
+	//Max3SatProblem();
 	void load(std::string path);
 	bool contains(int intToCheck);
 	int compute(vector<LogicVariable*>* solution);

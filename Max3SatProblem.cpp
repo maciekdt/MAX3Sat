@@ -1,3 +1,4 @@
+#pragma warning(disable : 4996)
 #include "Max3SatProblem.h"
 #include <fstream>
 #include <iostream>
@@ -29,7 +30,7 @@ void Max3SatProblem::load(string path) {
 		while (getline(file, line)) {
 			char* str = new char[line.length() + 1];
 			strcpy(str, line.c_str());
-			for (int i = 0; i < line.length(); i++) {
+			for (int i = 0; i < line.length() + 1; i++) {
 				str[i] = line.at(i);
 			}
 
