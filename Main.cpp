@@ -12,8 +12,9 @@ int main() {
     problem->load("m3s_50_0.txt");
 
     int iterations = 5;
-    GAOptymizer optymalizator;
-    optymalizator.initialize(problem->getVariables());
+    GAOptymizer* optymalizator = new GAOptymizer();
+    optymalizator->setParameters(10, 0.3, 0.1);
+    optymalizator->initialize(problem->getVariables());
 
     //for (int i = 0; i < iterations; i++) {
         //cout << i << " ";
