@@ -1,3 +1,4 @@
+#pragma warning(disable : 4996)
 #include "Max3SatProblem.h"
 #include <fstream>
 #include <iostream>
