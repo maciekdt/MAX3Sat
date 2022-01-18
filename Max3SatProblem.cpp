@@ -60,16 +60,16 @@ bool Max3SatProblem::contains(int intToCheck) {
 	return false;
 }
 
-int Max3SatProblem::compute(GAIndividual* solution) {
+int Max3SatProblem::compute(vector<LogicVariable*>* solution) {
 	int numberFitedClauses = 0;
 	bool first;
 	bool second;
 	bool third;
 
 	for (int i = 0; i < clauses->size(); i++) {
-		first = (clauses->at(i)->firstSign == solution->getLogicVariableById(clauses->at(i)->firstId)->sign);
-		second = (clauses->at(i)->secondSign == solution->getLogicVariableById(clauses->at(i)->secondId)->sign);
-		third = (clauses->at(i)->thirdSign == solution->getLogicVariableById(clauses->at(i)->thirdId)->sign);
+		first = (clauses->at(i)->firstSign == getVariableById(clauses->at(i)->firstId, solution)->sign);
+		second = (clauses->at(i)->secondSign == getVariableById(clauses->at(i)->secondId, solution)->sign);
+		third = (clauses->at(i)->thirdSign == getVariableById(clauses->at(i)->thirdId, solution)->sign);
 		if (first || second || third) numberFitedClauses++;
 	}
 	return numberFitedClauses;
@@ -77,5 +77,14 @@ int Max3SatProblem::compute(GAIndividual* solution) {
 
 int Max3SatProblem::getNumberOfClauses(){
 	return clauses->size();
+}
+
+LogicVariable* Max3SatProblem::getVariableById(int id, vector<LogicVariable*>* solution)
+{
+	for (int i = 0; i < solution->size(); i++) {
+		if (solution->at(i)->id == id)
+			return solution->at(i);
+	}
+	return nullptr;
 }
 

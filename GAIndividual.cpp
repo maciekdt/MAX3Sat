@@ -34,7 +34,7 @@ GAIndividual* GAIndividual::crossOver(GAIndividual* other){
 }
 
 float GAIndividual::fitness(Max3SatProblem* enviroment){
-	return ((float)enviroment->compute(this) / (float)enviroment->getNumberOfClauses());
+	return ((float)enviroment->compute(genotype) / (float)enviroment->getNumberOfClauses());
 }
 
 void GAIndividual::addToGenotypeRand(int id){
