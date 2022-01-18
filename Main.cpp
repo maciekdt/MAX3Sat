@@ -18,7 +18,8 @@ int main() {
     }
     return 0;
     */
-    Max3SatProblem test;
-    test.load("m3s_50_0.txt");
+    Max3SatProblem* test = new Max3SatProblem;
+    test->load("m3s_50_0.txt");
+    return 0;
 
 }

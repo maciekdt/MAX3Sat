@@ -28,11 +28,12 @@ void Max3SatProblem::load(string path) {
 	if (file) {
 		string line;
 		while (getline(file, line)) {
-			char* str = new char[line.length() + 1];
+			char* str = new char[line.size()+1];
 			strcpy(str, line.c_str());
-			for (int i = 0; i < line.length() + 1; i++) {
+			for (int i = 0; i < line.size(); i++) {
 				str[i] = line.at(i);
 			}
+
 
 			char* pch;
 			pch = strtok(&line.at(0), " )(");
@@ -44,8 +45,7 @@ void Max3SatProblem::load(string path) {
 				else {
 					flags.push_back(true);
 				}
-				variables->push_back(abs(stoi(pch)));
-
+				ids.push_back(abs(stoi(pch)));
 				pch = strtok(NULL, " )(");
 			}
 			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2),
@@ -74,6 +74,7 @@ void Max3SatProblem::load(string path) {
 			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2), 
 											flags.at(0), flags.at(1), flags.at(2)));
 		}*/
+
 		file.close();
 	}
 }
