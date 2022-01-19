@@ -11,35 +11,32 @@ Max3SatProblem::Max3SatProblem(){
 }
 
 Max3SatProblem::~Max3SatProblem(){
-	for (int i = 0; i < clauses->size(); i++) {
-		if(clauses->at(i) != NULL) delete clauses->at(i);
+	if (this != NULL) {
+		if (clauses != NULL) {
+			for (int i = 0; i < clauses->size(); i++) {
+				if (clauses->at(i) != NULL) delete clauses->at(i);
+			}
+			delete clauses;
+		}
+		if (variables != NULL) delete variables;
 	}
-	if(clauses != NULL) delete clauses;
-	if(variables != NULL) delete variables;
 }
 
 void Max3SatProblem::load(string path) {
 	ifstream file(path);
-	string line;
-	char separator = ' ';
-	string val;
-
-	bool sign = true;
-	int id = 0;
-	string number = "";
-
 
 	if (!file.good()) {
 		cout << "file error";
 		return;
 	}
-
+	
 	if (file) {
 		string line;
+		char* str;
 		while (getline(file, line)) {
 			vector<bool> flags;
 			vector<int> ids;
-			char* str = new char[line.size()+1];
+			str = new char[line.size()+1];
 			
 			strcpy(str, line.c_str());
 			for (int i = 0; i < line.size(); i++) {
@@ -63,6 +60,8 @@ void Max3SatProblem::load(string path) {
 					variables->push_back(abs(stoi(pch)));
 				pch = strtok(NULL, " )(");
 			}
+			delete str;
+			delete pch;
 			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2),
 				flags.at(0), flags.at(1), flags.at(2)));
 		}

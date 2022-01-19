@@ -58,6 +58,7 @@ void GAOptymizer::runIteration(Max3SatProblem* environment){
 		vector<GAIndividual*>* children = GAIndividual::crossOver(parent1,parent2,crossoverProbability);
 		GAIndividual* child1 = children->at(0);
 		GAIndividual* child2 = children->at(1);
+		delete children;
 		child1 = child1->mutation(mutationProbability);
 		child2 = child2->mutation(mutationProbability);
 		newPopulation->push_back(child1);

@@ -10,11 +10,10 @@
 using namespace std;
 
 int main() {
-
     Max3SatProblem* problem = new Max3SatProblem;
     problem->load("m3s_50_0.txt");
 
-    int iterations = 20;
+    int iterations = 2;
     GAOptymizer* optymalizator = new GAOptymizer();
     optymalizator->setParameters(50, 0.3, 0.1);
     optymalizator->initialize(problem->getVariables());

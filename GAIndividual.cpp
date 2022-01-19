@@ -5,10 +5,14 @@ GAIndividual::GAIndividual(){
 }
 
 GAIndividual::~GAIndividual() {
-	for (int i = 0; i < genotype->size(); i++) {
-		if(genotype->at(i) != NULL) delete genotype->at(i);
+	if (this != NULL) {
+		if (genotype != NULL) {
+			for (int i = 0; i < genotype->size(); i++) {
+				if (genotype->at(i) != NULL) delete genotype->at(i);
+			}
+			delete genotype;
+		}
 	}
-	if(genotype != NULL) delete genotype;
 }
 
 GAIndividual* GAIndividual::mutation(float probability){
@@ -22,6 +26,7 @@ GAIndividual* GAIndividual::mutation(float probability){
 			mutatedInd->genotype->push_back(new LogicVariable(genotype->at(i)->getId(), genotype->at(i)->getSign()));
 		}
 	}
+	delete this;
 	return mutatedInd;
 }
 
