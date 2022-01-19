@@ -22,6 +22,8 @@ int main() {
         optymalizator->runIteration(problem);
         cout << "iteration  : " << i << " || fitness of the best individual : " << optymalizator->findTheBestInPopulation(problem)->fitness(problem) << "\n";
     }
+    delete problem;
+    delete optymalizator;
 
     return 0;
 }

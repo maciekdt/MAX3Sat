@@ -60,7 +60,7 @@ void Max3SatProblem::load(string path) {
 					variables->push_back(abs(stoi(pch)));
 				pch = strtok(NULL, " )(");
 			}
-			delete str;
+			delete[] str;
 			delete pch;
 			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2),
 				flags.at(0), flags.at(1), flags.at(2)));
