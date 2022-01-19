@@ -17,5 +17,6 @@ public:
 	void initialize(vector<int>* variables);
 	void runIteration(Max3SatProblem* enviroment);
 	GAIndividual* findTheBestInPopulation(Max3SatProblem* enviroment);
+	~GAOptymizer();
 };
 

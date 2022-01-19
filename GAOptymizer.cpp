@@ -1,13 +1,20 @@
 #include "GAOptymizer.h"
 
+GAOptymizer::~GAOptymizer() {
+	for (int i = 0; i < population->size(); i++) {
+		delete population->at(i);
+	}
+	delete population;
+}
+
 GAIndividual* GAOptymizer::chooseParent(Max3SatProblem* enviroment){
 	int max = population->size() - 1;
 	int min = 0;
 	GAIndividual* parent1 = population->at(rand() % (max - min + 1) + min);
 	GAIndividual* parent2 = population->at(rand() % (max - min + 1) + min);
 
-	if (parent1->fitness(enviroment) > parent2->fitness(enviroment)) return parent1;
-	return parent2;
+	if (parent1->fitness(enviroment) > parent2->fitness(enviroment)) return parent1; //delete parent2
+	return parent2;//delete parent1
 }
 
 void GAOptymizer::setParameters(int populationSize, float crossoverProbabilty, float mutationProbability){
