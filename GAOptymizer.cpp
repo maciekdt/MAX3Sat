@@ -1,10 +1,20 @@
 #include "GAOptymizer.h"
 
+GAOptymizer::GAOptymizer() {
+	population = new vector<GAIndividual*>();
+	populationSize = POPULATIONSIZE;
+	crossoverProbability = CROSSOVERPROBABILITY;
+	mutationProbability = MUTATIONPROBABILITY;
+}
+
 GAOptymizer::~GAOptymizer() {
-	for (int i = 0; i < population->size(); i++) {
-		delete population->at(i);
+	if (this != NULL) {
+		for (int i = 0; i < population->size(); i++) {
+			if (population->at(i) != NULL)
+				delete population->at(i);
+		}
+		delete population;
 	}
-	delete population;
 }
 
 GAIndividual* GAOptymizer::chooseParent(Max3SatProblem* enviroment){
@@ -19,14 +29,13 @@ GAIndividual* GAOptymizer::chooseParent(Max3SatProblem* enviroment){
 
 void GAOptymizer::setParameters(int populationSize, float crossoverProbabilty, float mutationProbability){
 	this->populationSize = populationSize;
-	this->crossoverProbabilty = crossoverProbabilty;
+	this->crossoverProbability = crossoverProbabilty;
 	this->mutationProbability = mutationProbability;
 }
 
 void GAOptymizer::initialize(vector<int>* variables){
-	population = new vector<GAIndividual*>();
 	for (int i = 0; i < populationSize; i++) {
-		GAIndividual* ind = new  GAIndividual();
+		GAIndividual* ind = new  GAIndividual();			//nowy wskaznik
 		for (int i = 0; i < variables->size(); i++) {	
 			ind->addToGenotypeRand(variables->at(i));
 		}
@@ -36,11 +45,11 @@ void GAOptymizer::initialize(vector<int>* variables){
 
 
 void GAOptymizer::runIteration(Max3SatProblem* environment){
-	vector<GAIndividual*>* newPopulation = new vector<GAIndividual*>();
+	vector<GAIndividual*>* newPopulation = new vector<GAIndividual*>();	//nowy wskaznik
 	while (newPopulation->size() < population->size()) {
 		GAIndividual* parent1 = chooseParent(environment);
 		GAIndividual* parent2 = chooseParent(environment);
-		vector<GAIndividual*>* children = GAIndividual::crossOver(parent1,parent2,crossoverProbabilty);
+		vector<GAIndividual*>* children = GAIndividual::crossOver(parent1,parent2,crossoverProbability);
 		GAIndividual* child1 = children->at(0);
 		GAIndividual* child2 = children->at(1);
 		child1 = child1->mutation(mutationProbability);
