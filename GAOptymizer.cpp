@@ -9,11 +9,7 @@ GAOptymizer::GAOptymizer() {
 
 GAOptymizer::~GAOptymizer() {
 	if (this != NULL) {
-		for (int i = 0; i < population->size(); i++) {
-			if (population->at(i) != NULL)
-				delete population->at(i);
-		}
-		delete population;
+		deletePopulation();
 	}
 }
 
@@ -23,8 +19,18 @@ GAIndividual* GAOptymizer::chooseParent(Max3SatProblem* enviroment){
 	GAIndividual* parent1 = population->at(rand() % (max - min + 1) + min);
 	GAIndividual* parent2 = population->at(rand() % (max - min + 1) + min);
 
-	if (parent1->fitness(enviroment) > parent2->fitness(enviroment)) return parent1; //delete parent2
-	return parent2;//delete parent1
+	if (parent1->fitness(enviroment) > parent2->fitness(enviroment)) return parent1;
+	return parent2;
+}
+
+void GAOptymizer::deletePopulation(){
+	if (population != NULL) {
+		for (int i = 0; i < population->size(); i++) {
+			if (population->at(i) != NULL)
+				delete population->at(i);
+		}
+		delete population;
+	}
 }
 
 void GAOptymizer::setParameters(int populationSize, float crossoverProbabilty, float mutationProbability){
@@ -35,7 +41,7 @@ void GAOptymizer::setParameters(int populationSize, float crossoverProbabilty, f
 
 void GAOptymizer::initialize(vector<int>* variables){
 	for (int i = 0; i < populationSize; i++) {
-		GAIndividual* ind = new  GAIndividual();			//nowy wskaznik
+		GAIndividual* ind = new  GAIndividual();			
 		for (int i = 0; i < variables->size(); i++) {	
 			ind->addToGenotypeRand(variables->at(i));
 		}
@@ -57,7 +63,7 @@ void GAOptymizer::runIteration(Max3SatProblem* environment){
 		newPopulation->push_back(child1);
 		newPopulation->push_back(child2);
 	}
-	delete population;
+	deletePopulation();
 	population = newPopulation;
 }
 

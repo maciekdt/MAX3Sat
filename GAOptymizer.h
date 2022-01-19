@@ -14,6 +14,7 @@ private:
 	float mutationProbability;
 	vector<GAIndividual*>* population;
 	GAIndividual* chooseParent(Max3SatProblem* environment);
+	void deletePopulation();
 
 public:
 	void setParameters(int populationSize, float crossoverProbabilty, float mutationProbability);
