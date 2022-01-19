@@ -14,7 +14,7 @@ private:
 public:
 	GAIndividual();
 	GAIndividual* mutation(float probability);
-	static vector<GAIndividual*>* crossOver(GAIndividual* individual1, GAIndividual* individual2);
+	static vector<GAIndividual*>* crossOver(GAIndividual* individual1, GAIndividual* individual2, float probability);
 	float fitness(Max3SatProblem* enviroment);
 	void addToGenotypeRand(int id);
 	LogicVariable* getLogicVariableById(int id);
