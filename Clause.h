@@ -15,6 +15,7 @@ public:
 		secondSign = secondNegativ;
 		thirdSign = thirdNegativ;
 	};
+	~Clause(){};
 
 	int getFirstId() { return firstId; };
 	int getSecondId() { return secondId; };

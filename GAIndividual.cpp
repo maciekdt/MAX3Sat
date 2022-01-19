@@ -4,6 +4,13 @@ GAIndividual::GAIndividual(){
 	genotype = new vector<LogicVariable*>();
 }
 
+GAIndividual::~GAIndividual() {
+	for (int i = 0; i < genotype->size(); i++) {
+		delete genotype->at(i);
+	}
+	delete genotype;
+}
+
 GAIndividual* GAIndividual::mutation(float probability){
 	GAIndividual* mutatedInd = new GAIndividual();
 	for (int i = 0; i < genotype->size(); i++) {

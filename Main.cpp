@@ -10,7 +10,6 @@
 using namespace std;
 
 int main() {
-    srand(time(NULL));
     Max3SatProblem* problem = new Max3SatProblem;
     problem->load("m3s_50_0.txt");
 

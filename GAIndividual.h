@@ -13,6 +13,7 @@ private:
 
 public:
 	GAIndividual();
+	~GAIndividual();
 	GAIndividual* mutation(float probability);
 	static vector<GAIndividual*>* crossOver(GAIndividual* individual1, GAIndividual* individual2, float probability);
 	float fitness(Max3SatProblem* enviroment);

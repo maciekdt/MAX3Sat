@@ -5,6 +5,7 @@ public:
 		this->id = id;
 		this->sign = sign;
 	};
+	~LogicVariable(){};
 
 	int getId() { return id;  }
 	bool getSign() { return sign;  }
