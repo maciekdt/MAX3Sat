@@ -6,9 +6,9 @@ GAIndividual::GAIndividual(){
 
 GAIndividual::~GAIndividual() {
 	for (int i = 0; i < genotype->size(); i++) {
-		delete genotype->at(i);
+		if(genotype->at(i) != NULL) delete genotype->at(i);
 	}
-	delete genotype;
+	if(genotype != NULL) delete genotype;
 }
 
 GAIndividual* GAIndividual::mutation(float probability){

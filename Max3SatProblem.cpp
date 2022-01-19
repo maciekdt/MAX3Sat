@@ -5,6 +5,19 @@
 
 using namespace std;
 
+Max3SatProblem::Max3SatProblem(){
+	variables = new vector<int>();
+	clauses = new vector<Clause*>();
+}
+
+Max3SatProblem::~Max3SatProblem(){
+	for (int i = 0; i < clauses->size(); i++) {
+		if(clauses->at(i) != NULL) delete clauses->at(i);
+	}
+	if(clauses != NULL) delete clauses;
+	if(variables != NULL) delete variables;
+}
+
 void Max3SatProblem::load(string path) {
 	ifstream file(path);
 	string line;
@@ -13,10 +26,8 @@ void Max3SatProblem::load(string path) {
 
 	bool sign = true;
 	int id = 0;
-
 	string number = "";
-	variables = new vector<int>();
-	clauses = new vector<Clause*>();
+
 
 	if (!file.good()) {
 		cout << "file error";
@@ -55,30 +66,6 @@ void Max3SatProblem::load(string path) {
 			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2),
 				flags.at(0), flags.at(1), flags.at(2)));
 		}
-
-
-			/*-------------------------------------------- -
-			for (int i = 2; i < line.size()-2; i++) {
-				if (line[i] == '-') {
-					sign = false;
-				}
-				else if (line[i] != ' ') {
-					number += (line[i]);
-				}
-				else if (line[i] == ' ' && line[i+1] == ' ') {
-					id = stoi(number);
-					if (!(contains(id)))
-						variables->push_back(id);
-					ids.push_back(id);
-					flags.push_back(sign);
-					number = "";
-					i++;
-				}
-			}
-			clauses->push_back(new Clause(ids.at(0), ids.at(1), ids.at(2), 
-											flags.at(0), flags.at(1), flags.at(2)));
-		}*/
-
 		file.close();
 	}
 }
