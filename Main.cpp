@@ -13,7 +13,7 @@ int main() {
     Max3SatProblem* problem = new Max3SatProblem;
     problem->load("m3s_50_0.txt");
 
-    int iterations = 2;
+    int iterations = 20;
     GAOptymizer* optymalizator = new GAOptymizer();
     optymalizator->setParameters(50, 0.3, 0.1);
     optymalizator->initialize(problem->getVariables());
@@ -22,6 +22,7 @@ int main() {
         optymalizator->runIteration(problem);
         cout << "iteration  : " << i << " || fitness of the best individual : " << optymalizator->findTheBestInPopulation(problem)->fitness(problem) << "\n";
     }
+    optymalizator->printSolution(problem);
     delete problem;
     delete optymalizator;
 

@@ -15,6 +15,13 @@ GAIndividual::~GAIndividual() {
 	}
 }
 
+void GAIndividual::print(){
+	for (int i = 0; i < genotype->size(); i++) {
+		cout << "\n";
+		genotype->at(i)->print();
+	}
+}
+
 GAIndividual* GAIndividual::mutation(float probability){
 	GAIndividual* mutatedInd = new GAIndividual();
 	for (int i = 0; i < genotype->size(); i++) {
@@ -75,6 +82,15 @@ LogicVariable* GAIndividual::getLogicVariableById(int id){
 		if (genotype->at(i)->getId() == id) return genotype->at(i);
 	}
 	return nullptr;
+}
+
+bool* GAIndividual::getResultTable()
+{
+	bool* result = new bool(genotype->size());
+	for (int i = 0; i < genotype->size(); i++) {
+		result[genotype->at(i)->getId()] = genotype->at(i)->getSign();
+	}
+	return result;
 }
 
 

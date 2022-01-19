@@ -1,4 +1,5 @@
 #include "GAOptymizer.h"
+#include<iostream>
 
 GAOptymizer::GAOptymizer() {
 	population = new vector<GAIndividual*>();
@@ -31,6 +32,11 @@ void GAOptymizer::deletePopulation(){
 		}
 		delete population;
 	}
+}
+
+void GAOptymizer::printSolution(Max3SatProblem* environment){
+	GAIndividual* theBest = findTheBestInPopulation(environment);
+	theBest->print();
 }
 
 void GAOptymizer::setParameters(int populationSize, float crossoverProbabilty, float mutationProbability){

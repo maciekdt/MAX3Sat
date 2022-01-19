@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 class LogicVariable {
 public:
 	LogicVariable(int id, bool sign) {
@@ -9,6 +10,7 @@ public:
 
 	int getId() { return id;  }
 	bool getSign() { return sign;  }
+	void print() { std::cout << "{" << id << " - " << sign << "}"; };
 
 private:
 	int id;
